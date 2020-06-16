@@ -6,9 +6,10 @@ public class KmodesAlgorithm {
 
 	String[][] matrix; // Ma tran du lieu
 	int[] resultTbl; // Mang nay dung de luu ket qua khi chay thuat toan
-	int[] tempresulttbl;
 	String[][] karray; // Chon k dong trong du lieu trong du lieu lam modes
 	int k, loop;
+	
+//	int[] tempresulttbl;
 
 	public KmodesAlgorithm(String[][] matrix, int k) {
 		this.matrix = matrix;
@@ -17,6 +18,17 @@ public class KmodesAlgorithm {
 		selectKModes();
 	}
 
+	// Khoi tao ban ket qua
+	public void initResultTable() {
+		// init cluster
+		System.out.println("\ninit result table (array that indicates Obj <=> Mode)");
+		resultTbl = new int[matrix.length];
+		for (int i = 0; i < matrix.length; i++) {
+			resultTbl[i] = 0;
+			System.out.println("Oject "+i+" = "+resultTbl[i]);
+		}
+	}
+	
 	
 	// /////////////////////////////////////////operation//////////////////////////////////////////////////////////
 	public void selectKModes() {
@@ -44,22 +56,12 @@ public class KmodesAlgorithm {
 		}
 	}
 	
-	// khoi tao ban ket qua
-	public void initResultTable() {
-		// init cluster
-		System.out.println("\ninit result table (array that indicates Obj <=> Mode)");
-		resultTbl = new int[matrix.length];
-		for (int i = 0; i < matrix.length; i++) {
-			resultTbl[i] = 0;
-			System.out.println("Oject "+i+" = "+resultTbl[i]);
-		}
-	}
 	
-	// Buoc 3 & 4:
+	// Buoc 2 3 & 4:
 	public void checkAndUpdate() {
 		System.out.println("\n--------------------------------------------------- Step 2-3&4 : recheck and relocate K-modes ---------------------------------------------------------------------------------\n");
 		loop = 0;
-		tempresulttbl = new int[matrix.length];
+		int[] tempresulttbl = new int[matrix.length];
 
 		do {
 			
@@ -68,20 +70,20 @@ public class KmodesAlgorithm {
 
 				for (int i = 0; i < matrix.length; i++) { 
 					System.out.println("Alocating Object "+i);
-				int distance = matrix[0].length + 1; 
+					int distance = matrix[0].length + 1; 
 				
-				for (int kno = 0; kno < k; kno++) { 
-					int temp = 0;
-					System.out.print(" with K-Mode "+kno);
-					
-					temp = distance(karray[kno], matrix[i]);
-					System.out.println(" have distance = "+temp);
-					if (temp <= distance) { 
-						distance = temp;
-						resultTbl[i] = kno;
+					for (int kno = 0; kno < k; kno++) { 
+						int temp = 0;
+						System.out.print(" with K-Mode "+kno);
+						
+						temp = distance(karray[kno], matrix[i]);
+						System.out.println(" have distance = "+temp);
+						if (temp <= distance) { 
+							distance = temp;
+							resultTbl[i] = kno;
+						}
 					}
-				}
-				System.out.println("=>Min distance :" + distance+"\n");
+					System.out.println("=>Min distance :" + distance+"\n");
 			}
 				
 				importdata.printIntArray(resultTbl);
