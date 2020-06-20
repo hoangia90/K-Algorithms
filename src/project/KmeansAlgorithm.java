@@ -104,7 +104,7 @@ public class KmeansAlgorithm {
 				}
 			}
 			
-			System.out.println("\nUpdate K-Mode");
+			System.out.println("\nUpdate Clusters");
 			importdata.printMode(karray);
 			loop++;
 		}while (checkIsChanged(resultTbl,tempresulttbl));
@@ -149,7 +149,7 @@ public class KmeansAlgorithm {
 				}
 			}
 			array[i] = count;
-			System.out.println("Mode " + i + " have :" + count + " instances!");
+			System.out.println("Cluster " + i + " have :" + count + " instances!");
 		}
 		return array;
 	}
