@@ -7,7 +7,7 @@ import java.io.IOException;
 public class importdata {
 
 	// nhap tu file text de ra 1 mang 2 chieu kieu String
-	public static String[][] txt2array(String filePath, int inst, int attr) {
+	public static String[][] txt2StrArray(String filePath, int inst, int attr) {
 		BufferedReader br = null;
 		String[][] matrix = new String[inst][attr];
 		int i = 0;
@@ -18,6 +18,33 @@ public class importdata {
 				String[] ArrayCurrentline = sCurrentLine.split(",");
 				for (int j = 0; j < attr; j++) {
 					matrix[i][j] = ArrayCurrentline[j].toString();
+				}
+				i++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)
+					br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return matrix;
+	}
+	
+	public static int[][] txt2IntArray(String filePath, int inst, int attr) {
+		BufferedReader br = null;
+		int[][] matrix = new int[inst][attr];
+		int i = 0;
+		try {
+			String sCurrentLine;
+			br = new BufferedReader(new FileReader(filePath));
+			while ((sCurrentLine = br.readLine()) != null) {
+				String[] ArrayCurrentline = sCurrentLine.split(",");
+				for (int j = 0; j < attr; j++) {
+					matrix[i][j] = Integer.parseInt(ArrayCurrentline[j].toString());
 				}
 				i++;
 			}
@@ -45,6 +72,7 @@ public class importdata {
 			;
 		}
 	}
+
 	
 	public static void printIntArray2d(int[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
@@ -57,9 +85,9 @@ public class importdata {
 		}
 	}
 	
-	public static void printMode(double[][] karray) {
+	public static void printMode(int[][] karray) {
 		for (int i = 0; i < karray.length; i++) {
-			System.out.print("Mode "+i+": " );
+			System.out.print("Cluster "+i+": " );
 			for (int j = 0; j < karray[0].length; j++) {
 				System.out.print(karray[i][j] + " ");
 			}

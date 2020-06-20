@@ -10,7 +10,7 @@ public class Experiment {
 	
 		//Setup data
 		int k = 4;
-		String[][] matrix = importdata.txt2array(str, inst, attr); // ma tran du lieu se xu ly
+		String[][] matrix = importdata.txt2StrArray(str, inst, attr); // ma tran du lieu se xu ly
 		System.out.println("----------------------------------------------------------- Initial Data: ----------------------------------------------------------------------");
 		importdata.printStringArray2d(matrix);
 		int experiment[][] = new int[200][k];

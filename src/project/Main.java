@@ -6,27 +6,27 @@ public class Main {
 //	static int instances = 16; 
 //	static int attributes = 5; 
 
-	 static String dataSetPath = "dataSet/soybean.txt"; //  (683x35)
-	 static int instances = 683; 
-	 static int attributes = 35; 
-	 
-//	 static String dataSetPath = "dataSet/soybean1987.txt"; //  (47x35) k=4
-//	 static int instances = 47; 
+//	 static String dataSetPath = "dataSet/soybean.txt"; //  (683x35)
+//	 static int instances = 683; 
 //	 static int attributes = 35; 
+	 
+	 static String dataSetPath = "dataSet/soybean1987.txt"; //  (47x35) k=4
+	 static int instances = 47; 
+	 static int attributes = 35; 
 	 
 //	 static String dataSetPath = "dataSet/test2.txt"; //  (5x6) k=2
 //	 static int instances = 5; 
 //	 static int attributes = 6; 
 
 	public static void main(String[] args) {
-		runKmodes(dataSetPath, instances, attributes, 4);
-//		runKmeans(dataSetPath, instances, attributes, 4);
+//		runKmodes(dataSetPath, instances, attributes, 4);
+		runKmeans(dataSetPath, instances, attributes, 4);
 		
 	}
 	
 	 static void runKmodes (String dataSetPath, int instances, int attributes, int k) {
 		//Initialize data
-		String[][] matrix = importdata.txt2array(dataSetPath, instances, attributes); // ma tran du lieu se xu ly
+		String[][] matrix = importdata.txt2StrArray(dataSetPath, instances, attributes); // ma tran du lieu se xu ly
 		System.out.println("----------------------------------------------------------- Initial Data: ----------------------------------------------------------------------");
 		importdata.printStringArray2d(matrix);
 		//K-modes Algorithm
@@ -49,11 +49,11 @@ public class Main {
 	 
 	 static void runKmeans (String dataSetPath, int instances, int attributes, int k) {
 			//Initialize data
-			String[][] matrix = importdata.txt2array(dataSetPath, instances, attributes); // ma tran du lieu se xu ly
+			int[][] matrix = importdata.txt2IntArray(dataSetPath, instances, attributes); // ma tran du lieu se xu ly
 			System.out.println("----------------------------------------------------------- Initial Data: ----------------------------------------------------------------------");
-			importdata.printStringArray2d(matrix);
+			importdata.printIntArray2d(matrix);
 			//K-modes Algorithm
-			KmodesAlgorithm kma = new KmodesAlgorithm(matrix, k);
+			KmeansAlgorithm kma = new KmeansAlgorithm(matrix, k);
 			//Step 1:
 			System.out.println("\nInitial Clusters:");
 			importdata.printMode(kma.karray);

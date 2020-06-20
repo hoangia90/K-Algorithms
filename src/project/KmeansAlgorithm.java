@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class KmeansAlgorithm {
 
-	double[][] data; // Mang du lieu, du lieu se duoc dua vao trong mang 2 chieu nay 
-	double[] resultTbl; // Mang nay dung de luu ket qua khi chay thuat toan, 
-	double[][] karray; // Chon k dong trong du lieu trong du lieu lam modes
+	int[][] data; // Mang du lieu, du lieu se duoc dua vao trong mang 2 chieu nay 
+	int[] resultTbl; // Mang nay dung de luu ket qua khi chay thuat toan, 
+	int[][] karray; // Chon k dong trong du lieu trong du lieu lam modes
 	int k, loop;
 	
 //	int[] tempresulttbl;
 
-	public KmeansAlgorithm(double[][] data, int k) {
+	public KmeansAlgorithm(int[][] data, int k) {
 		this.data = data;
 		this.k = k;
 		initResultTable();
@@ -22,7 +22,7 @@ public class KmeansAlgorithm {
 	public void initResultTable() {
 		// init cluster
 		System.out.println("\ninit result table (array that indicates Obj <=> Mode)");
-		resultTbl = new double[data.length];
+		resultTbl = new int[data.length];
 		for (int i = 0; i < data.length; i++) {
 			resultTbl[i] = 0;
 			System.out.println("Oject "+i+" = "+resultTbl[i]);
@@ -35,12 +35,12 @@ public class KmeansAlgorithm {
 		System.out.println("\n-------------------------------------- Step 1: chooses randomly initial K-modes from given dataset with k = "+k+" ------------------------------------------------------");
 		Random rand = new Random();
 		boolean isDuplicate = false;
-		karray = new double[k][data[0].length]; 
+		karray = new int[k][data[0].length]; 
 		
 		for (int i = 0; i < k; i++) {
 			do {
 				isDuplicate = false;
-				double temp[] = data[rand.nextInt(data.length)];
+				int temp[] = data[rand.nextInt(data.length)];
 				for (int j = 0; j < i; j++) {
 					if (distanceCalculate(karray[j], temp) == 0) {
 						isDuplicate = true;
@@ -58,7 +58,7 @@ public class KmeansAlgorithm {
 	public void checkAndUpdate() {
 		System.out.println("\n--------------------------------------------------- Step 2-3&4 : recheck and relocate K-modes ---------------------------------------------------------------------------------\n");
 		loop = 0;
-		double[] tempresulttbl = new double[data.length];
+		int[] tempresulttbl = new int[data.length];
 
 		do {
 			
@@ -71,7 +71,7 @@ public class KmeansAlgorithm {
 				
 				for (int kno = 0; kno < k; kno++) { 
 					double temp = 0;
-					System.out.print(" with K-Mode "+kno);
+					System.out.print(" with cluster "+kno);
 					
 					temp = distanceCalculate(karray[kno], data[i]);
 					System.out.println(" have distance = "+temp);
@@ -83,7 +83,7 @@ public class KmeansAlgorithm {
 				System.out.println("=>Min distance :" + distance+"\n");
 			}
 			
-			importdata.printDoubleArray(resultTbl);
+			importdata.printIntArray(resultTbl);
 			for (int i = 0; i < karray.length; i++) {
 				for (int a = 0; a < data[0].length; a++) {
 					int max = 0;
@@ -110,7 +110,7 @@ public class KmeansAlgorithm {
 		}while (checkIsChanged(resultTbl,tempresulttbl));
 	}
 
-	public boolean checkIsChanged(double resultTbl[], double tempresulttbl[]){
+	public boolean checkIsChanged(int resultTbl[], int tempresulttbl[]){
 		boolean changed = false;
 		for (int i = 0; i < data.length; i++) {
 			if (resultTbl[i] != tempresulttbl[i]) {
@@ -127,7 +127,7 @@ public class KmeansAlgorithm {
 	
 	// Calculate distance between 2 objects
 	// Tinh khoang cach d giua 2 object va instances va tra ve khoang cach
-	public double distanceCalculate(double[] array1, double[] array2) {
+	public double distanceCalculate(int[] array1, int[] array2) {
 		double dis = 0;
 		for (int i = 0; i < array1.length; i++) { 
 //			if (!array1[i].equals(array2[i])) { 
