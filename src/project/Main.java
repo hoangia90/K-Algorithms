@@ -2,50 +2,71 @@ package project;
 
 public class Main {
 
-//	static String str = "dataSet/balloons.txt"; //  6x8
-//	static int inst = 16; 
-//	static int attr = 5; 
+//	static String dataSetPath = "dataSet/balloons.txt"; //  6x8
+//	static int instances = 16; 
+//	static int attributes = 5; 
 
-//	 static String str = "dataSet/soybean.txt"; //  (683x35)
-//	 static int inst = 683; 
-//	 static int attr = 35; 
+//	 static String dataSetPath = "dataSet/soybean.txt"; //  (683x35)
+//	 static int instances = 683; 
+//	 static int attributes = 35; 
 	 
-	 static String str = "dataSet/soybean1987.txt"; //  (47x35) k=4
-	 static int inst = 47; 
-	 static int attr = 35; 
+	 static String dataSetPath = "dataSet/soybean1987.txt"; //  (47x35) k=4
+	 static int instances = 47; 
+	 static int attributes = 35; 
 	 
-//	 static String str = "dataSet/test2.txt"; //  (5x6) k=2
-//	 static int inst = 5; 
-//	 static int attr = 6; 
+//	 static String dataSetPath = "dataSet/test2.txt"; //  (5x6) k=2
+//	 static int instances = 5; 
+//	 static int attributes = 6; 
 
 	public static void main(String[] args) {
-
+//		runKmodes(dataSetPath, instances, attributes, 4);
+		runKmeans(dataSetPath, instances, attributes, 4);
+		
+	}
+	
+	 static void runKmodes (String dataSetPath, int instances, int attributes, int k) {
 		//Initialize data
-		int k = 4;
-		String[][] matrix = importdata.txt2array(str, inst, attr); // ma tran du lieu se xu ly
+		String[][] matrix = importdata.txt2array(dataSetPath, instances, attributes); // ma tran du lieu se xu ly
 		System.out.println("----------------------------------------------------------- Initial Data: ----------------------------------------------------------------------");
 		importdata.printStringArray2d(matrix);
-		
 		//K-modes Algorithm
 		KmodesAlgorithm kma = new KmodesAlgorithm(matrix, k);
 		//Step 1:
-		System.out.println("\nInitial mode:");
+		System.out.println("\nInitial Modes:");
 		importdata.printMode(kma.karray);
-//		//Step 2:
-//		kma.allocateObject();
-		//Step 3&4
+		//Step 2&3&4
 		kma.checkAndUpdate();
-		
 		//--- result after clustering-----
 		System.out.println("\n\n------------------------------------------------------------- Result -------------------------------------------------------------------------------------");
 		importdata.printIntArray(kma.resultTbl);
 		System.out.println("\n--------------------------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.println("\n--------------------------------------------------------------- K-modes! ------------------------------------------------------------------------------------");
+		System.out.println("\n--------------------------------------------------------------- K-modes ------------------------------------------------------------------------------------");
 		importdata.printMode(kma.karray);
 		System.out.println("\ntotal loop: " + (kma.loop + 1));
-		System.out.println("\n--------------------------------------------------------------- statistic ------------------------------------------------------------------------------------");
-
+		System.out.println("\n--------------------------------------------------------------- Statistic ------------------------------------------------------------------------------------");
 		kma.statistic();
-
-	}
+	 }
+	 
+	 static void runKmeans (String dataSetPath, int instances, int attributes, int k) {
+			//Initialize data
+			String[][] matrix = importdata.txt2array(dataSetPath, instances, attributes); // ma tran du lieu se xu ly
+			System.out.println("----------------------------------------------------------- Initial Data: ----------------------------------------------------------------------");
+			importdata.printStringArray2d(matrix);
+			//K-modes Algorithm
+			KmodesAlgorithm kma = new KmodesAlgorithm(matrix, k);
+			//Step 1:
+			System.out.println("\nInitial Clusters:");
+			importdata.printMode(kma.karray);
+			//Step 2&3&4
+			kma.checkAndUpdate();
+			//--- result after clustering-----
+			System.out.println("\n\n------------------------------------------------------------- Result -------------------------------------------------------------------------------------");
+			importdata.printIntArray(kma.resultTbl);
+			System.out.println("\n--------------------------------------------------------------------------------------------------------------------------------------------------------");
+			System.out.println("\n--------------------------------------------------------------- K-Means ------------------------------------------------------------------------------------");
+			importdata.printMode(kma.karray);
+			System.out.println("\ntotal loop: " + (kma.loop + 1));
+			System.out.println("\n--------------------------------------------------------------- Statistic ------------------------------------------------------------------------------------");
+			kma.statistic();
+		 }
 }

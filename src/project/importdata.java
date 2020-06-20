@@ -57,6 +57,17 @@ public class importdata {
 		}
 	}
 	
+	public static void printMode(double[][] karray) {
+		for (int i = 0; i < karray.length; i++) {
+			System.out.print("Mode "+i+": " );
+			for (int j = 0; j < karray[0].length; j++) {
+				System.out.print(karray[i][j] + " ");
+			}
+			System.out.println();
+			;
+		}
+	}
+	
 	public static void printMode(String[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 			System.out.print("Mode "+i+": " );
@@ -69,6 +80,13 @@ public class importdata {
 	}
 	
 	// in mang 1 chieu
+	public static void printDoubleArray(double[] resultTbl) {
+		for (int i = 0; i < resultTbl.length; i++) {
+			System.out.println("instance " + (i + 1) + " belongs to cluster "
+					+ resultTbl[i]);
+		}
+	}
+	
 	public static void printIntArray(int array[]) {
 		for (int i = 0; i < array.length; i++) {
 			System.out.println("instance " + (i + 1) + " belongs to cluster "
