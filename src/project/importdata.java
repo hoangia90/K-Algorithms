@@ -87,7 +87,7 @@ public class importdata {
 	
 	public static void printMode(int[][] karray) {
 		for (int i = 0; i < karray.length; i++) {
-			System.out.print("Cluster "+i+": " );
+			System.out.print("K (Centroid) "+i+": " );
 			for (int j = 0; j < karray[0].length; j++) {
 				System.out.print(karray[i][j] + " ");
 			}

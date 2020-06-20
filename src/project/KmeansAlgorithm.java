@@ -104,7 +104,7 @@ public class KmeansAlgorithm {
 				}
 			}
 			
-			System.out.println("\nUpdate Clusters");
+			System.out.println("\nUpdate Centroids");
 			importdata.printMode(karray);
 			loop++;
 		}while (checkIsChanged(resultTbl,tempresulttbl));
@@ -128,14 +128,15 @@ public class KmeansAlgorithm {
 	// Calculate distance between 2 objects
 	// Tinh khoang cach d giua 2 object va instances va tra ve khoang cach
 	public double distanceCalculate(int[] array1, int[] array2) {
-		double dis = 0;
+		int dis = 0;
 		for (int i = 0; i < array1.length; i++) { 
 //			if (!array1[i].equals(array2[i])) { 
 //				dis++;
 //			}
-			dis = dis + (Math.pow(array1[i],2) - Math.pow(array2[i],2));
+			
+			dis = dis + (int) ( Math.pow( (array1[i] - array2[i]) ,2));
 		}
-		return dis;
+		return Math.sqrt(dis);
 	}
 	
 	public int[] statistic(){
