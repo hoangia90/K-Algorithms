@@ -32,7 +32,7 @@ public class KmeansAlgorithm {
 	
 	// /////////////////////////////////////////operation//////////////////////////////////////////////////////////
 	public void selectKModes() {
-		System.out.println("\n-------------------------------------- Step 1: chooses randomly initial K-modes from given dataset with k = "+k+" ------------------------------------------------------");
+		System.out.println("\n-------------------------------------- Step 1: chooses randomly initial K from given dataset with k = "+k+" ------------------------------------------------------");
 		Random rand = new Random();
 		boolean isDuplicate = false;
 		karray = new int[k][data[0].length]; 
@@ -56,7 +56,7 @@ public class KmeansAlgorithm {
 	
 	// Buoc 2 3 & 4:
 	public void checkAndUpdate() {
-		System.out.println("\n--------------------------------------------------- Step 2-3&4 : recheck and relocate K-modes ---------------------------------------------------------------------------------\n");
+		System.out.println("\n--------------------------------------------------- Step 2-3&4 : recheck and relocate Ks ---------------------------------------------------------------------------------\n");
 		loop = 0;
 		int[] tempresulttbl = new int[data.length];
 
