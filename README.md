@@ -1,1 +1,1 @@
-# K-Modes-Algorithm
+# K-Algorithm
